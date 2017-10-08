@@ -27,6 +27,6 @@ module RandomData
     
     def self.random_number
         numbers = (1..1000).to_a
-        "$" + "numbers[rand(0..1000)]"
+        numbers[rand(0..1000)]
     end
 end
