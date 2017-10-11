@@ -1,8 +1,9 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe QuestionsController, type: :controller do
   
-  let(:my_question) { Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: "true")}
+  let(:my_question) { Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false)}
   
     describe "GET #index" do
     it "returns http success" do
@@ -36,11 +37,11 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe "QUESTION create" do
     it "increases the number of Question by 1" do
-      expect { question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: "true" } } }.to change(Question,:count).by(1)
+      expect { question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } } }.to change(Question,:count).by(1)
     end
     
     it "assigns the new question to @question" do
-      question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: "true" } }
+      question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false } }
       expect(assigns(:question)).to eq Question.last
     end
     
@@ -94,7 +95,7 @@ RSpec.describe QuestionsController, type: :controller do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
       
-      put :update, params: { id: my_question.id, question: { title: new_title, body: new_body, resolved: "true" } } 
+      put :update, params: { id: my_question.id, question: { title: new_title, body: new_body, resolved: false } } 
       
       updated_question = assigns(:question)
       expect(updated_question.id).to eq my_question.id
@@ -106,7 +107,7 @@ RSpec.describe QuestionsController, type: :controller do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
       
-      put :update, params: { id: my_question.id, question: { title: new_title, body: new_body, resolved: "true" } }
+      put :update, params: { id: my_question.id, question: { title: new_title, body: new_body, resolved: false } }
       expect(response).to redirect_to my_question
     end
   end

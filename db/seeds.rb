@@ -18,7 +18,8 @@ end
 25.times do
     Question.create!(
         title: RandomData.random_question,
-        body: RandomData.random_paragraph
+        body: RandomData.random_paragraph,
+        resolved: false
         )
 end
 
