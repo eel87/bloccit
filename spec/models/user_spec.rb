@@ -24,6 +24,8 @@ RSpec.describe User, type: :model do
   
   describe "user name requirements" do
     it "should capitalize first and last names" do
+        user_lower_case.name
+        user_lower_case.save
         expect(user_lower_case.name).to eq("Erin Leck")
     end
   end

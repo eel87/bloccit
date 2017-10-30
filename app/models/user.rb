@@ -4,11 +4,11 @@ class User < ApplicationRecord
     
   def capitalize(name)
     name = name.split(" ")
-    name.each do |word|
-      word.replace(word.capitalize)
-    end
+      name.each do |word|
+        word.replace(word.capitalize)
+      end
     return name.join(" ")
-	end
+  end
 	
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
     
