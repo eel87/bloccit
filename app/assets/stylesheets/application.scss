@@ -17,6 +17,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap"; 
 
+.radio input[type="radio"], 
+.radio-inline input[type="radio"], 
+.checkbox input[type="checkbox"], 
+.checkbox-inline input[type="checkbox"] {
+  position: absolute;
+  margin-left: 5px;
+}
 
 // .social-btn {
 //     position: relative;
