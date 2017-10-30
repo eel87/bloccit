@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
   
   def create
+    params.permit!
     @user = User.new
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   end
   
   def confirm
+    params.permit!
     @user = User.new
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
