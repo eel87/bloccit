@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  
+  before_action :require_sign_in, except: :index, except: :show
+  
   def index
     @topics = Topic.all
   end
