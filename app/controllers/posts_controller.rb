@@ -68,7 +68,7 @@ class PostsController < ApplicationController
       redirect_to [post.topic, post]
     end
   end
-  
+   
   def authorize_moderator
     unless current_user.moderator?
       flash[:alert] = "You must be an admin to do that."
