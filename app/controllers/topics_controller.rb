@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   
   before_action :require_sign_in, except: [:index, :show]
   before_action :authorize_user, except: [:index, :show]
-  before_action :authorize_moderator, except: [:show, :update]
+  before_action :authorize_moderator, except: [:index, :show, :update]
   
   def index
     @topics = Topic.all
@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @topic = Topic.find(params[:id])
   end
