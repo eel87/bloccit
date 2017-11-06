@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   let(:title) { RandomData.random_sentence }
   let(:body) { RandomData.random_paragraph }
-  let(:topic) { Topic.create!(name: name, description: description) }
   let(:name) { RandomData.random_sentence }
   let(:description) { RandomData.random_paragraph }
   
+  let(:topic) { Topic.create!(name: name, description: description) }
   let(:user) { User.create!(name: 'Bloccit User', email: 'user@bloccit.com', password: 'helloworld') }
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
   
