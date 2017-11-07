@@ -28,4 +28,8 @@ class Post < ApplicationRecord
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
   end
+  
+  def after_create
+    create_vote
+  end
 end

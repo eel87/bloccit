@@ -75,4 +75,12 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+  
+  describe "#after_create" do
+    it "creates a new up_vote for the post on which it is called" do
+      new_post = topic.posts.create!(title: title, body: body, user: user)
+      new_post.votes.create!(value: 1, user: user)
+      expect(new_post.points).to eq (1)
+    end
+  end
 end

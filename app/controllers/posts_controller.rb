@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     
     if @post.save
       flash[:notice] = "Post was saved."
+      create_vote(current_user)
       redirect_to [@topic, @post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again"
@@ -66,5 +67,9 @@ class PostsController < ApplicationController
       flash[:alert] = "You must be an admin to do that."
       redirect_to [post.topic, post]
     end
+  end
+  
+  def create_vote(user)
+    user.votes.create(post: @post, value: 1)
   end
 end
