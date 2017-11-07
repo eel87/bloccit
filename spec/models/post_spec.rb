@@ -37,6 +37,7 @@ RSpec.describe Post, type: :model do
       @up_votes = post.votes.where(value: 1).count
       @down_votes = post.votes.where(value: -1).count
     end
+  end
     
     describe "#up_votes" do
       it "counts the number of votes with value = 1" do
@@ -76,11 +77,18 @@ RSpec.describe Post, type: :model do
     end
   end
   
-  describe "#after_create" do
-    it "creates a new up_vote for the post on which it is called" do
-      new_post = topic.posts.create!(title: title, body: body, user: user)
-      new_post.votes.create!(value: 1, user: user)
-      expect(new_post.points).to eq (1)
+  describe "#create_vote" do
+    it "sets the post up_votes to 1" do
+      expect(post.up_votes).to eq(1)
+    end
+    
+    it "calls #create_vote when a post is created" do
+      expect(post).to receive(:create_vote)
+      post.save
+    end
+    
+    it "associates the vote with the owner" do
+      expect(post.votes.first.user).to eq(post.user) do
     end
   end
 end
