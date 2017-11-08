@@ -39,7 +39,7 @@
   <h4>
     <% @user.favorites.each do |favorite| %>
       <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %>
-      <%= image_tag @user.avatar_url(20) %>
+      <%= image_tag favorite.post.user.avatar_url(20) %>
         <small>
           <%= pluralize(favorite.post.votes.count, 'vote') %>,
           <%= pluralize(favorite.post.comments.count, 'comment') %>
