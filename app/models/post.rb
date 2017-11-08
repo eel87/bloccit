@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   
   after_create :create_favorite
+  
   default_scope { order('rank DESC') }
   
   validates :title, length: { minimum: 5 }, presence: true
@@ -35,6 +36,7 @@ class Post < ApplicationRecord
   private
   
   def create_favorite
-    user.favorites.create(post: self)
+    Favorite.create(post: self, user: self.user)
+    FavoriteMailer.new_post(self).deliver_now
   end
 end
