@@ -18,8 +18,31 @@
     </div>
   </div>
 </div>
-<h2>Posts</h2>
-<%= render @user.posts %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if user_has_no_posts?(@user) %>
+  <h2>Posts</h2>
+  <h4><%= "#{@user.name}" %> has not submitted any posts yet.</h4>
+<% else %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% end %>
+
+<% if user_has_no_comments?(@user) %>
+  <h2>Comments</h2>
+  <h4><%= "#{@user.name}" %> has not submitted any comments yet.</h4>
+<% else %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>  
+<% end %>
+
+<h2>Favorited Posts</h2>
+  <h4>
+    <% @user.favorites.each do |favorite| %>
+      <%= link_to favorite.post.title %>
+      <%= image_tag @user.avatar_url(20) %>
+        <small>
+          <%= pluralize(favorite.post.votes.count, 'vote') %>,
+          <%= pluralize(favorite.post.comments.count, 'comment') %>
+        </small><br/>
+    <% end %>
+  </h4>
